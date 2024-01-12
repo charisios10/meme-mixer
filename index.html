@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemeMixer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #memeContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .meme {
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>MemeMixer</h1>
+    <p>Combine and remix memes to create hilarious combinations!</p>
+
+    <button onclick="generateMeme()">Generate Meme</button>
+
+    <div id="memeContainer"></div>
+
+    <script>
+        function generateMeme() {
+            const memeContainer = document.getElementById('memeContainer');
+            memeContainer.innerHTML = '';
+
+            const memeElements = [
+                { type: 'text', content: 'Why did the chicken', color: '#ff0000' },
+                { type: 'image', src: 'https://picsum.photos/200/300', alt: 'Chicken Image' },
+                { type: 'text', content: 'cross the road?', color: '#0000ff' },
+            ];
+
+            const memeDiv = document.createElement('div');
+            memeDiv.className = 'meme';
+
+            memeElements.forEach(element => {
+                if (element.type === 'text') {
+                    const textElement = document.createElement('p');
+                    textElement.style.color = element.color;
+                    textElement.textContent = element.content;
+                    memeDiv.appendChild(textElement);
+                } else if (element.type === 'image') {
+                    const imageElement = document.createElement('img');
+                    imageElement.src = element.src;
+                    imageElement.alt = element.alt;
+                    memeDiv.appendChild(imageElement);
+                }
+            });
+
+            memeContainer.appendChild(memeDiv);
+        }
+    </script>
+
+</body>
+
+</html>
